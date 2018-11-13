@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int n;
+    int i = 0;
+    scanf("%d",&n);
+    while(i<n){
+        char type = 'C';
+        float temp;
+        float temp_t;
+        scanf("%c %f",&type, &temp);
+
+        if(type == 'C'){
+        temp_t = (temp*9)/5 + 32;
+        printf("%.2f\n",temp_t);
+        i++;
+
+         }
+        else if(type == 'F'){
+        temp_t = 5*(temp-32)/9;
+        printf("%.2f\n",temp_t);
+        i++;
+         }
+    }
+    return 0;
+}
