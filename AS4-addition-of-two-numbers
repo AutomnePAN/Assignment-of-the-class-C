@@ -1,0 +1,100 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <string.h>
+
+
+
+int main()
+{
+    int num_case;
+    scanf("%d",&num_case);
+    int counter_case = 0;
+    while(counter_case<num_case)
+    {
+        char nums[2][200];
+        scanf("%s",nums[0]);
+        scanf("%s",nums[1]);
+        int size_M, size_m,m,M;
+        if(strlen(nums[0]) > strlen(nums[1])){
+            m = 1;
+            M = 0;
+        }
+        else{
+            m = 0;
+            M = 1;
+        }
+
+        size_m = strlen(nums[m]);
+        size_M = strlen(nums[M]);
+        int flag = 0;
+        if (size_M > size_m){
+                for(int i = 0;i < size_m;i++){
+                int x =  nums[m][size_m - i - 1] - '0';
+                int y =  nums[M][size_M - i - 1] - '0';
+                int temp =  x + y + flag ;
+                if ( (temp > 10)||(temp == 10)){ flag = 1; }
+                else {flag = 0;}
+                nums[M][size_M - i - 1] = (char)(temp%10 + '0');
+                }
+
+
+
+            if(flag == 1){
+                for (int i = size_m ; i < size_M ; i++){
+                    int X =  nums[M][size_M - i - 1] - '0';
+                    int temp = X + flag;
+                    if ( (temp > 10)||(temp == 10) ){ flag = 1; }
+                    else {flag = 0;}
+                    nums[M][size_M - i - 1] = (char)(temp%10 + '0');
+                }
+            }
+
+
+            if(flag == 1){
+
+                char res[size_M + 2];
+                for(int i = 0 ; i< (size_M+2) ;i++){
+                    if(i == 0){
+                        res[i] = '1';
+                    }
+                    else {
+                        res[i] = nums[M][i-1];
+                    }
+                }
+                printf("%s\n",res);
+            }
+            else{
+                printf("%s\n",nums[M]);
+            }
+        }
+        else if(size_M == size_m){
+                for(int i = 0;i < size_m;i++){
+                int x =  nums[m][size_m - i - 1] - '0';
+                int y =  nums[M][size_M - i - 1] - '0';
+                int temp =  x + y + flag ;
+                if ( (temp > 10)||(temp == 10)){ flag = 1; }
+                else {flag = 0;}
+                nums[M][size_M - i - 1] = (char)(temp%10 + '0');
+            }
+            if(flag == 1){
+                char res[size_M + 2];
+                for(int i = 0 ; i< (size_M+2) ;i++){
+                    if(i == 0){
+                        res[i] = '1';
+                    }
+                    else {
+                        res[i] = nums[M][i-1];
+                    }
+                }
+                printf("%s\n",res);
+            }
+            else{
+                printf("%s\n",nums[M]);
+            }
+        }
+        counter_case++;
+    }
+    printf("END");
+    return 0;
+}
